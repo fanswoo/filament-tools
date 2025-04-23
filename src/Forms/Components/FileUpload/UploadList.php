@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Core\Forms\Components\FileUpload;
+namespace FF\FilamentTools\Forms\Components\FileUpload;
 
 use Livewire\Component;
 
@@ -9,6 +9,6 @@ class UploadList extends Component
 
     public function render()
     {
-        return view('filament.forms.components.file-upload.upload-list');
+        return view('ff-filament-tools::forms.components.file-upload.upload-list');
     }
 }

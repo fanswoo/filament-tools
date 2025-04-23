@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Filament\Core\Forms\Components\FileUpload;
+namespace FF\FilamentTools\Forms\Components\FileUpload;
 
 use Filament\Forms\Components\Field;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
 
 class FileUpload extends Field
 {
-    protected string $view = 'filament.forms.components.file-upload.file-upload';
+    protected string $view = 'ff-filament-tools::forms.components.file-upload.file-upload';
 
     public string $buttonText = '上傳檔案';
 

@@ -16,12 +16,12 @@
     }"
     @file-uploaded.window="state = $event.detail.files"
   >
-    @livewire(\App\Filament\Core\Forms\Components\FileUpload\UploadButton::class, [
-    'buttonText' => $buttonText,
-    'fileRelatedName' => $fileRelatedName,
-    'isMultiple' => $isMultiple,
+    @livewire(\FF\FilamentTools\Forms\Components\FileUpload\UploadButton::class, [
+      'buttonText' => $buttonText,
+      'fileRelatedName' => $fileRelatedName,
+      'isMultiple' => $isMultiple,
     ])
-    @livewire(\App\Filament\Core\Forms\Components\FileUpload\UploadList::class)
+    @livewire(\FF\FilamentTools\Forms\Components\FileUpload\UploadList::class)
   </div>
   <script>
     document.addEventListener('alpine:init', () => {
