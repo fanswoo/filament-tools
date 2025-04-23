@@ -1,0 +1,36 @@
+{
+  "name": "fanswoo/filament-tools",
+  "description": "fanswoo attachment",
+  "type": "library",
+  "authors": [
+    {
+      "name": "fansWoo",
+      "email": "service@fanswoo.com"
+    }
+  ],
+  "keywords": [
+    "attachment",
+    "fanswoo"
+  ],
+  "homepage": "https://fanswoo.com",
+  "support": {
+    "issues": "https://github.com/fanswoo/framework-core",
+    "source": "https://github.com/fanswoo/framework-core"
+  },
+  "require": {
+    "php": "^8.4",
+    "laravel/framework": "^11.0",
+  },
+  "autoload": {
+    "psr-4": {
+      "FF\\FilamentTools\\": "./src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "FF\\FilamentTools\\FilamentTools\\FilamentToolsProvider"
+      ]
+    }
+  }
+}
