@@ -21,7 +21,7 @@
     "php": "^8.4",
     "laravel/framework": "^11.0",
     "filament/filament": "^3.0",
-    "fanswoo/attachment": "dev-develop"
+    "fanswoo/attachment": "dev-main"
   },
   "autoload": {
     "psr-4": {
