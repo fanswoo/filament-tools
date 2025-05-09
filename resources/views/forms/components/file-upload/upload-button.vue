@@ -84,16 +84,6 @@ const onUploadFiles = async (event): Promise<boolean> => {
     files.value.push(...response.data.files);
   }
 
-  if (response.data.status === true && files.value) {
-    for (let fileIndex = 0; fileIndex < files.value.length; fileIndex += 1) {
-      const file = {
-        id: files.value[fileIndex].id,
-        title: files.value[fileIndex].title,
-        downloadUrl: files.value[fileIndex].downloadUrl,
-      };
-    }
-  }
-
   message.value = defaultMessage;
   return true;
 };

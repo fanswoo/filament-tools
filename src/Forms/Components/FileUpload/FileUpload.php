@@ -2,6 +2,7 @@
 
 namespace FF\FilamentTools\Forms\Components\FileUpload;
 
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Field;
 use Illuminate\Support\HtmlString;
 
@@ -18,6 +19,21 @@ class FileUpload extends Field
         parent::setUp();
 
         $this->helperText(new HtmlString('點選 <kbd>CTRL</kbd> 可複選檔案'));
+
+        $this->afterStateHydrated(static function ( $component, $state): void {
+            $component->state($component->getFiles());
+        });
+
+        $this->dehydrateStateUsing(static function ($component, ?array $state) {
+            $fileIds = [];
+            foreach($state as $file) {
+                if (is_array($file)) {
+                    $fileIds[] = $file['id'];
+                }
+            }
+            $component->getRecord()->{$component->name}('set', $fileIds);
+        });
+
     }
 
     public function buttonText(string $value): static

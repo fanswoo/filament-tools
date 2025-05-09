@@ -1,5 +1,5 @@
 <div
-  x-data="uploadButton"
+  x-data="uploadButton" class="mb-2"
 >
   <label
     x-text="'{{ $buttonText }}'"
@@ -36,21 +36,21 @@
           const result = await this.$wire.saveFiles();
           if (result.status) {
             this.uploadedMessage = '上傳成功';
-            this.$wire.$dispatch('file-uploaded', { files: result.files });
+            this.$wire.$dispatch('on-file-uploaded', { files: result.files });
           } else {
             this.uploadedMessage = result.message;
-            this.$wire.$dispatch('file-uploaded', { uploadedMessage: this.uploadedMessage });
+            this.$wire.$dispatch('on-file-uploaded', { uploadedMessage: this.uploadedMessage });
           }
           // empty files
           this.$wire.el.querySelector('input[type="file"]').value = '';
         }, (error) => {
           console.error(error);
           this.uploadedMessage = '上傳失敗';
-          this.$wire.$dispatch('file-uploaded', { message: this.uploadedMessage });
+          this.$wire.$dispatch('on-file-uploaded', { message: this.uploadedMessage });
         }, (event) => {
         }, () => {
           this.uploadedMessage = '上傳失敗';
-          this.$wire.$dispatch('file-uploaded', { message: this.uploadedMessage });
+          this.$wire.$dispatch('on-file-uploaded', { message: this.uploadedMessage });
           console.warn('upload cancelled');
         })
       },
