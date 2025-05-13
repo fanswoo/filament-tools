@@ -1,0 +1,1 @@
+function t(){return{init(){self=this},self:null,onFileDeleted(e){this.$wire.$dispatch("on-file-deleted",{id:e})},onSortFiles(e,i){self.$wire.$dispatch("on-files-sorted",{item:e,position:i})}}}export{t as default};

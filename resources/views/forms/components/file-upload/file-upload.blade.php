@@ -6,11 +6,20 @@
   $isMultiple = $isMultiple();
 @endphp
 
+@inject('filamentAsset', Filament\Support\Facades\FilamentAsset::class )
+
 <x-dynamic-component
   :component="$getFieldWrapperView()"
   :field="$field"
 >
   <div
+    x-load
+    x-load-src="{{
+      $filamentAsset::getAlpineComponentSrc(
+        'file-upload',
+        'fanswoo/filament-tools/forms/file-upload'
+      )
+    }}"
     x-data="fileUpload($wire.$entangle('{{ $getStatePath() }}'))"
   >
     @livewire(\FF\FilamentTools\Forms\Components\FileUpload\UploadButton::class, [
@@ -20,26 +29,4 @@
     ])
     @livewire(\FF\FilamentTools\Forms\Components\FileUpload\UploadList::class)
   </div>
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('fileUpload', (state) => ({
-        state,
-        init() {
-          this.$wire.$on('on-files-uploaded', (event) => {
-            this.state.push(...event.files);
-          });
-          this.$wire.$on('on-file-deleted', (event) => {
-            this.state = this.state.filter(file => file.id !== event.id);
-          });
-          this.$wire.$on('on-files-sorted', (event) => {
-            const { item, position } = event;
-            const currentIndex = this.state.indexOf(item);
-
-            this.state.splice(currentIndex, 1);
-            this.state.splice(position, 0, item);
-          });
-        },
-      }));
-    });
-  </script>
 </x-dynamic-component>

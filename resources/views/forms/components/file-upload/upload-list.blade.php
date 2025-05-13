@@ -1,5 +1,16 @@
-<div x-data="uploadList">
-  <div x-sort="onSortFiles" class="grid gap-2">
+@inject('filamentAsset', Filament\Support\Facades\FilamentAsset::class )
+
+<div
+  x-load
+  x-load-src="{{
+    $filamentAsset::getAlpineComponentSrc(
+      'upload-list',
+      'fanswoo/filament-tools/forms/file-upload'
+    )
+  }}"
+  x-data="uploadList"
+>
+  <div x-sort="onSortFiles" class="grid md:grid-cols-2 gap-2">
     <template x-for="(file, index) in state" :key="file.id + '-' + index">
       <div
         x-sort:item="file"
@@ -7,13 +18,14 @@
       >
         <span
           x-text="file.title"
+          class="overflow-hidden whitespace-nowrap"
         ></span>
-        <a :href="file.downloadUrl" title="下載" class="w-6 h-6">
+        <a :href="file.downloadUrl" title="下載" class="flex-none w-6 h-6">
           <x-heroicon-m-cloud-arrow-down />
         </a>
         <span
           title="刪除"
-          class="w-6 h-6 cursor-pointer"
+          class="flex-none w-6 h-6 cursor-pointer"
         >
         <x-heroicon-s-x-circle
           @click="onFileDeleted(file.id)"
@@ -22,20 +34,3 @@
     </template>
   </div>
 </div>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('uploadList', () => ({
-        init() {
-          self = this;
-        },
-        self: null,
-        onFileDeleted(id) {
-          this.$wire.$dispatch('on-file-deleted', { id });
-        },
-        onSortFiles(item, position) {
-          self.$wire.$dispatch('on-files-sorted', { item, position });
-        }
-    }));
-  });
-</script>

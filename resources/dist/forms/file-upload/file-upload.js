@@ -1,0 +1,1 @@
+function o(i){return{state:i,init(){this.$wire.$on("on-files-uploaded",t=>{this.state.push(...t.files)}),this.$wire.$on("on-file-deleted",t=>{this.state=this.state.filter(e=>e.id!==t.id)}),this.$wire.$on("on-files-sorted",t=>{let{item:e,position:s}=t,n=this.state.indexOf(e);this.state.splice(n,1),this.state.splice(s,0,e)})}}}export{o as default};

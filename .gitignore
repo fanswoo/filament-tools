@@ -1,5 +1,6 @@
 # ignore packages
 /vendor
+/node_modules
 
 # ignore IDE
 /.idea

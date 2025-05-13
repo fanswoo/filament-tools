@@ -1,5 +1,15 @@
+@inject('filamentAsset', Filament\Support\Facades\FilamentAsset::class )
+
 <div
-  x-data="uploadButton" class="mb-2"
+  x-load
+  x-load-src="{{
+    $filamentAsset::getAlpineComponentSrc(
+      'upload-button',
+      'fanswoo/filament-tools/forms/file-upload'
+    )
+  }}"
+  x-data="uploadButton"
+  class="mb-2"
 >
   <label
     x-text="'{{ $buttonText }}'"
@@ -18,42 +28,3 @@
     <span x-text="uploadedMessage" class="text-sm text-gray-500"></span>
   </template>
 </div>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('uploadButton', () => ({
-      init() {
-        this.$wire.el.querySelector('label').addEventListener('click', (event) => {
-          event.preventDefault();
-          this.$wire.el.querySelector('input[type="file"]').click();
-        });
-      },
-      uploadedMessage: '',
-      onFileUpload(event) {
-        const files = this.$wire.el.querySelector('input[type="file"]').files;
-
-        this.$wire.uploadMultiple('files', files, async() => {
-          const result = await this.$wire.saveFiles();
-          if (result.status) {
-            this.uploadedMessage = '上傳成功';
-            this.$wire.$dispatch('on-files-uploaded', { files: result.files });
-          } else {
-            this.uploadedMessage = result.message;
-            this.$wire.$dispatch('on-files-uploaded', { uploadedMessage: this.uploadedMessage });
-          }
-          // empty files
-          this.$wire.el.querySelector('input[type="file"]').value = '';
-        }, (error) => {
-          console.error(error);
-          this.uploadedMessage = '上傳失敗';
-          this.$wire.$dispatch('on-files-uploaded', { message: this.uploadedMessage });
-        }, (event) => {
-        }, () => {
-          this.uploadedMessage = '上傳失敗';
-          this.$wire.$dispatch('on-files-uploaded', { message: this.uploadedMessage });
-          console.warn('upload cancelled');
-        })
-      },
-    }));
-  });
-</script>
