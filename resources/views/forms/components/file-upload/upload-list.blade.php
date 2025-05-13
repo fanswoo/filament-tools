@@ -10,15 +10,15 @@
   }}"
   x-data="uploadList"
 >
-  <div x-sort="onSortFiles" class="grid md:grid-cols-2 gap-2">
+  <div x-sort="onSortFiles" class="grid sm:grid-cols-2 gap-2">
     <template x-for="(file, index) in state" :key="file.id + '-' + index">
       <div
         x-sort:item="file"
-       class="flex gap-1 rounded-lg p-2 ring-1 shadow-sm bg-white dark:bg-white/5 ring-gray-950/10 dark:ring-white/20 cursor-move"
+       class="flex gap-1 max-w-80 min-w-0 rounded-lg p-2 ring-1 shadow-sm bg-white dark:bg-white/5 ring-gray-950/10 dark:ring-white/20 cursor-move"
       >
         <span
           x-text="file.title"
-          class="overflow-hidden whitespace-nowrap"
+          class="flex-auto overflow-hidden text-ellipsis whitespace-nowrap"
         ></span>
         <a :href="file.downloadUrl" title="下載" class="flex-none w-6 h-6">
           <x-heroicon-m-cloud-arrow-down />
