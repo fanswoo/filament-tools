@@ -34,10 +34,10 @@ class FilamentToolsProvider extends PackageServiceProvider
         ], 'fanswoo/filament-tools/css');
     }
 
-//    public function configurePackage(Package $package): void
-//    {
-//        $package
-//            ->name('filament-forms')
-//            ->hasViews();
-//    }
+    public function configurePackage(Package $package): void
+    {
+        $package
+            ->name('filament-forms')
+            ->hasViews();
+    }
 }
