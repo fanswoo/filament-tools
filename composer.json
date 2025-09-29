@@ -20,8 +20,7 @@
   "require": {
     "php": "^8.4",
     "laravel/framework": "^11.0",
-    "filament/filament": "^3.0",
-    "fanswoo/attachment": "dev-main"
+    "filament/filament": "^4.0"
   },
   "autoload": {
     "psr-4": {

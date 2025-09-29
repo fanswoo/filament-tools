@@ -22,7 +22,7 @@ class Color
 
         $colorName = $colorNames[$key % count($colorNames)];
 
-        return "rgb(" . $panel->getColors()[$colorName][$depth] . ")";
+        return $panel->getColors()[$colorName][$depth];
     }
 
     static function getColors(int $count, int $depth): array
@@ -31,6 +31,7 @@ class Color
 
         $colorNames = [
             'primary',
+            'secondary',
             'danger',
             'purple',
             'info',
@@ -40,7 +41,7 @@ class Color
         $colors = [];
         for ($i = 0; $i < $count; $i++) {
             $colorName = $colorNames[$i % count($colorNames)];
-            $colors[] = "rgb(" . $panel->getColors()[$colorName][$depth] . ")";
+            $colors[] = $panel->getColors()[$colorName][$depth];
         }
 
         return $colors;
