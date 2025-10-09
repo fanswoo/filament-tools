@@ -11,7 +11,7 @@ class MediaUpload extends SpatieMediaLibraryFileUpload
         parent::setUp();
 
         $this
-            ->disk(config('filesystems.media_disk'))
+            ->disk(config('media-library.disk_name'))
             ->acceptedFileTypes(['image/png', 'image/jpeg'])
             ->collection($this->name)
             ->openable()
