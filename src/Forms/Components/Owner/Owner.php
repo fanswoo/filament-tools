@@ -13,6 +13,7 @@ class Owner extends Select
         $this
             ->preload()
             ->required()
+            ->selectablePlaceholder()
             ->default(fn() => auth()->id());
     }
 
@@ -25,7 +26,8 @@ class Owner extends Select
                 modifyQueryUsing: fn ($query) => $query->permission([
                     ...$optionPermissions,
                     ...$managePermissions,
-                ])->orWhere('id', auth()->id())
+                ])
+                    ->orWhere('id', auth()->id())
             )
             ->disabled(fn ($operation) =>
                 $operation === 'edit' &&
