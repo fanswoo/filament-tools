@@ -18,7 +18,6 @@ class MediaUpload extends SpatieMediaLibraryFileUpload
             ->multiple()
             ->reorderable()
             ->appendFiles()
-            ->downloadable()
-            ->panelLayout('grid');
+            ->downloadable();
     }
 }
