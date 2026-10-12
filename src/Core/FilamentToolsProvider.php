@@ -23,6 +23,7 @@ class FilamentToolsProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
+            ->setBasePath(dirname(__DIR__))
             ->name('filament-forms')
             ->hasViews();
     }
